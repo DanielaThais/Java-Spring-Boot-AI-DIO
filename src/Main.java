@@ -1,36 +1,34 @@
-import java.time.OffsetDateTime;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        //Entendendo a diferença entre ArrayList e Vector
+        Set<User> users = new HashSet<>();
+        users.add(new User(0, "João"));
+        users.add(new User(1, "Maria"));
+        users.add(new User(2, "Pedro"));
+        users.add(new User(3, "Ana"));
 
-        List<Integer> arrayList = new ArrayList<>();
-        var arrayStart = OffsetDateTime.now();
-        for (int i = 0; i < 100_000_000; i++) {
-            arrayList.add(i);
+        System.out.println("***** APRESENTAÇÃO DOS DADOS *****");
+        System.out.println(users.contains(new User(0, "João")));
+        System.out.println("\nHash de João: " + new User (0, "João").hashCode());
+        System.out.println("Hash de Maria: " + new User (1, "Maria").hashCode());
+        System.out.println("Hash de Pedro: " + new User (2, "Pedro").hashCode());
+        System.out.println("Hash de Ana: " + new User (3, "Ana").hashCode());
+
+        //o número de hash é um valor gerado agrupando com uma espécie de setor, onde cada número significa algo
+
+        System.out.println("\nUsuários:");
+        users.forEach(System.out::println);
+
+        //Apresentando dados com Lambda
+
+        System.out.println("\nDados com Lambda:");
+        var iterator = users.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
-
-        List<Integer> vectorList = new Vector<>();
-        var vectorStart = OffsetDateTime.now();
-        for (int i = 0; i < 100_000_000; i++) {
-            vectorList.add(i);
-        }
-
-        List<Integer> linkedList = new Vector<>();
-        var linkedStart = OffsetDateTime.now();
-        for (int i = 0; i < 100_000_000; i++) {
-            linkedList.add(i);
-        }
-
-        System.out.println("APRESENTAÇÃO DOS DADOS");
-        System.out.println("\nArrayList: " + Duration.between(arrayStart, OffsetDateTime.now()).toMillis());
-        System.out.println("Vector: " + Duration.between(vectorStart, OffsetDateTime.now()).toMillis());
-        System.out.println("LinkedList: " + Duration.between(linkedStart, OffsetDateTime.now()).toMillis());
     }
 }

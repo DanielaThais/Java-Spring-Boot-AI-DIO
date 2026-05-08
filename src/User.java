@@ -1,43 +1,51 @@
 import java.util.Objects;
+import static java.util.Objects.isNull;
+import static java.util.Objects.hash;
 
 public class User {
     
-    private int code;
+    private int id;
     private String name;
-   
-    public User(final int code, String name) {
-        this.code = code;
+
+    public User () {
+    }
+
+    public User (int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public User() {
+    public int getId(){
+        return id;
     }
 
-    public int getCode() {
-        return code;
+    public void setId(int id){
+        this.id = id;
     }
-    public void setCode(int code) {
-        this.code = code;
-    }
-    public String getName() {
+
+    public String getName(){
         return name;
     }
-    public void setName(String name) {
+
+    public void setName(String name){
         this.name = name;
     }
 
     @Override
-    public String toString() {
-        return String.format("{ 'code': %d, 'name': '%s' }", this.code, this.name); //formata para JSON
+    public String toString(){
+        return String.format("{id = %d, name = '%s'}", id, name);
     }
-   
+
     @Override
-    public boolean equals (final Object obj){
-        var isEqual = false;
-        if (obj instanceof User user){
-           if (this == user) return true;
-           if (this.code == user.code && Objects.equals(this.name, user.name)) isEqual = true;
-        } 
-        return isEqual;
+    public boolean equals(final Object obj) {
+        if(obj == this) return true;
+        if ((isNull(obj)) || (!(obj instanceof User user))) return false;
+
+        return this.id == user.getId() && Objects.equals(user.getName(), this.name);
+    }
+
+    @Override
+    public int hashCode(){
+        return hash(this.id, this.name);
     }
 }
