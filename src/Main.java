@@ -1,11 +1,12 @@
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Set<User> users = new HashSet<>();
+        Set<User> users = new LinkedHashSet<>();
         users.add(new User(0, "João"));
         users.add(new User(1, "Maria"));
         users.add(new User(2, "Pedro"));
@@ -14,9 +15,10 @@ public class Main {
         System.out.println("***** APRESENTAÇÃO DOS DADOS *****");
         System.out.println(users.contains(new User(0, "João")));
         System.out.println("\nHash de João: " + new User (0, "João").hashCode());
+        System.out.println("Hash de Ana: " + new User (3, "Ana").hashCode());
         System.out.println("Hash de Maria: " + new User (1, "Maria").hashCode());
         System.out.println("Hash de Pedro: " + new User (2, "Pedro").hashCode());
-        System.out.println("Hash de Ana: " + new User (3, "Ana").hashCode());
+        
 
         //o número de hash é um valor gerado agrupando com uma espécie de setor, onde cada número significa algo
 
@@ -30,5 +32,11 @@ public class Main {
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
+
+        //Remoção condicional
+        users.removeIf(Predicate.not(user -> user.getId() > 2));
+
+        System.out.println("\nUsuários após remoção condicional:");
+        users.forEach(System.out::println);
     }
 }
