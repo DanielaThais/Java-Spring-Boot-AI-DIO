@@ -31,8 +31,8 @@ public class Main {
                 "\nOBTENDO DADOS COM CONTAINS KEY" +
                 "\n\nO Map contém 'leo@leo.com'? ");
         System.out.println(users.containsKey("leo@leo.com"));
-        System.out.println("\nO Map contém 'ana@ana.com'? ");
-        System.out.println(users.containsKey("ana@ana.com"));
+        System.out.println("\nO Map contém 'eduarda@eduarda.com'? ");
+        System.out.println(users.containsKey("eduarda@eduarda.com"));
 
         System.out.println("\n==================================" +
                 "\nOBTENDO DADOS COM CONTAINS VALUE" +ixa
